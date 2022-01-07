@@ -1,7 +1,6 @@
 #This is the main file, connect other files  to it.
 
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 
 app=Flask(__name__)
 
