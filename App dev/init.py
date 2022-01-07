@@ -1,16 +1,15 @@
 #This is the main file, connect other files  to it.
 
-from flask import Flask
+from flask import Flask, render_template
 
-app=Flask(__name__)
+
+app= Flask(__name__)
+
 
 @app.route('/')
-def home():
-    return ("Hello world")
-
-@app.route('/loginform')
 def loginform():
-    return ('loginform.html')
+    return render_template("loginform.html")
+
 
 
 
