@@ -11,6 +11,7 @@ app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///site.db' #url of database
 
 db=SQLAlchemy(app)
 
+
 class User(db.Model): #class will be mapped to a table
     id= db.Column(db.Integer ,primary_key=True) #creating column (this is used by sql)
     #primary key: Unique id for users
@@ -18,9 +19,14 @@ class User(db.Model): #class will be mapped to a table
     username= db.Column(db.String(50),unique=True,nullable=False) #Value is a string , 50 character long, unique and cannot be empty
     email= db.Column(db.String(120),unique=True,nullable=False)
     image_file =db.Column(db.String(20),nullable=False,default='default.jpg')
+# try:
     password =db.Column(db.String(60),nullable=False)
-    # subscription_type=db.Column(db.String(1),default=1)
-    #post=db.relationship('Post',backref="author",lazy=True)
+    # confirm_password=db.Column(db.String(60),nullable=False)
+# except  password!=confirm_password:
+
+       
+        # subscription_type=db.Column(db.String(1),default=1)
+        #post=db.relationship('Post',backref="author",lazy=True)
 
 
 
