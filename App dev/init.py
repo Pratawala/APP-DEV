@@ -8,6 +8,11 @@ app=Flask(__name__)
 def home():
     return ("Hello world")
 
+@app.route('/loginform')
+def loginform():
+    return ('loginform.html')
+
+
 
 
 
