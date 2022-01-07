@@ -10,7 +10,7 @@ def home():
 
 @app.route('/loginform')
 def loginform():
-    return ('loginform.html')
+    return render_template('loginform.html')
 
 
 
