@@ -1,5 +1,5 @@
 #This is the main file, connect other files  to it.
-from flask import Flask,render_template
+from flask import Flask,render_template,flash,redirect,url_for
 from forms import RegistrationForm,LoginForm
 app = Flask(__name__)
 
@@ -12,15 +12,24 @@ def home():
 #do  not remove this apprently it crashes the entire server when removed
 
 
-@app.route("/register")
+@app.route("/register",methods=['GET','POST'])
 def register():
     form=RegistrationForm()  #creates a form object from Registraion form
+    if form.validate_on_submit():
+        flash(f'Account successfully created for {form.username.data}!') #flash displays a popup message
+        return redirect(url_for("home"))
     return render_template("register.html",title="Register",form=form)
-    #creates a template called register.html
+    #register.html is the file name for the register form
 
-@app.route('/login.form')
+@app.route('/html/loginform',methods=['GET','POST'])
 def loginform():
-    form=LoginForm()
+    form=LoginForm
+    if form.validate_on_submit():
+        if form.email.data=='admin@blog.com' and form.password.data=='kingisme':
+            flash('You have been logged in!','sucess')
+            return redirect(url_for('home'))
+        else:
+            flash('Login Unsucessful. Please check username and password','danger')
     return render_template("loginform.html",title="login",form=form)
 
 
