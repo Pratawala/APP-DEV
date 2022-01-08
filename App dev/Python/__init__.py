@@ -7,13 +7,19 @@ app.config['SECRET_KEY']='bd5b0be1a4802f93d8007cae7574cefd'  #Encryption stuff t
 
 
 
-@app.route('/')
+
+
+
+@app.route("/register")
+def register():
+    form=RegistrationForm()  #creates a form object from Registraion form
+    return render_template("register.html",title="Register",form=form)
+    #creates a template called register.html
+
+@app.route('/login')
 def loginform():
+    form=LoginForm()
     return render_template("loginform.html")
-
-
-
-
 
 
 if __name__=="__main__":
