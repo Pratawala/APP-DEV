@@ -1,6 +1,7 @@
 #This is the main file, connect other files  to it.
 from flask import Flask
 
+app = Flask(__name__)
 
 
 @app.route('/')
