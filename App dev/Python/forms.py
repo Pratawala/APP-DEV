@@ -1,6 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import validators
-from wtforms.fields.simple import PasswordField, StringField,SubmitField,remember,BooleanField
+from wtforms import PasswordField, StringField,SubmitField,BooleanField
 from wtforms.validators import DataRequired ,Length,Email,EqualTo #imports  validators , what they validates is in their name  
 
 class RegistrationForm(FlaskForm):  #AREA FOR HTML-PY ERRORR
@@ -27,5 +26,5 @@ class LoginForm(FlaskForm):  #AREA FOR HTML-PY ERRORR
     
 
 
-    remember =BooleanField('Remember Me') #Use cookies to remember user
+    Remember =BooleanField('Remember Me') #Use cookies to remember user
     submit= SubmitField('Login') #Python For the Submit python
