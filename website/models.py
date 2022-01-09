@@ -1,15 +1,7 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+from website import db
 from datetime import datetime
 
-app= Flask(__name__)
 
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False #makes warning message go away
-app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///site.db' #url of database
-
-
-
-db=SQLAlchemy(app)
 
 
 class User(db.Model): #class will be mapped to a table

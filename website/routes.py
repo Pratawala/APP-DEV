@@ -1,10 +1,7 @@
-#This is the main file, connect other files  to it.
-from flask import Flask,render_template,flash,redirect,url_for
-from forms import RegistrationForm,LoginForm
-app = Flask(__name__)
-
-app.config['SECRET_KEY']='bd5b0be1a4802f93d8007cae7574cefd'  #Encryption stuff to prevent cookie manipulation XSS blah blah blah
-
+from flask import render_template,flash,redirect,url_for,flash,redirect
+from website.models import User
+from website.forms import RegistrationForm,LoginForm
+from website import app
 
 @app.route("/")
 def home():
@@ -31,8 +28,3 @@ def loginform():
         else:
             flash('Login Unsucessful. Please check username and password','danger')
     return render_template("loginform.html",title="login",form=form)
-
-
-if __name__=="__main__":
-    app.run(debug=True)
-#nothing below this will work.
