@@ -1,7 +1,7 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+from website import db
 from datetime import datetime
 
+<<<<<<< HEAD:App dev/Python/database.py
 app= Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False #makes warning message go away
 app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///site.db' #url of database
@@ -11,6 +11,10 @@ bcrypt = Bcrypt(app)
 from flaskblog import routes
 
 class Note()
+=======
+
+
+>>>>>>> 428b0768c8d1b2a912cc30d929f79945afab58f1:website/models.py
 
 class User(db.Model): #class will be mapped to a table
     id= db.Column(db.Integer ,primary_key=True) #creating column (this is used by sql)
