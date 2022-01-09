@@ -3,14 +3,14 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
 app= Flask(__name__)
-
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False #makes warning message go away
 app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///site.db' #url of database
+db = SQLAlchemy(app)
+bcrypt = Bcrypt(app)
 
+from flaskblog import routes
 
-
-db=SQLAlchemy(app)
-
+class Note()
 
 class User(db.Model): #class will be mapped to a table
     id= db.Column(db.Integer ,primary_key=True) #creating column (this is used by sql)
