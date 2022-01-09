@@ -11,8 +11,6 @@ def home():
 #do  not remove this apprently it crashes the entire server when removed
 
 
-
-
 @app.route("/register",methods=['GET','POST'])
 def register():
     form=RegistrationForm()  #creates a form object from Registraion form

@@ -22,11 +22,10 @@ class Note(db.model):
 
 class User(db.Model): #class will be mapped to a table
     id= db.Column(db.Integer ,primary_key=True) #creating column (this is used by sql)
-    #primary key: Unique id for users
-    #Following columns is for storing data we want
     username= db.Column(db.String(50),unique=True,nullable=False) #Value is a string , 50 character long, unique and cannot be empty
     email= db.Column(db.String(120),unique=True,nullable=False)
     image_file =db.Column(db.String(20),nullable=False,default='default.jpg')
+    notes = db.relationship('Note')
 # try:
     password =db.Column(db.String(60),nullable=False)
     # confirm_password=db.Column(db.String(60),nullable=False)
