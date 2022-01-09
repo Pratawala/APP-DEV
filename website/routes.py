@@ -5,9 +5,13 @@ from website import app
 
 @app.route("/")
 def home():
-    return "Hello world"
+    return render_template("null2.html")
 #do  not remove this apprently it crashes the entire server when removed
 
+
+@app.route("/")
+def test():
+    return render_template("null2.html")
 
 @app.route("/register",methods=['GET','POST'])
 def register():
