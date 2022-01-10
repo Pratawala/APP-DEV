@@ -1,7 +1,9 @@
 from website import db
 from datetime import datetime
 from sqlalchemy.sql import func
+from flask import Flask
 from flask_login import UserMixin
+from sqlalchemy import SQLAlchemy
 
 app= Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False #makes warning message go away
