@@ -1,6 +1,8 @@
 from website import db
 from datetime import datetime
-
+from  flask import Flask
+from  flask_sqlalchemy import SQLAlchemy 
+from  flask_bcrypt import Bcrypt
 
 
 app= Flask(__name__)
@@ -9,14 +11,13 @@ app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///site.db' #url of database
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 
-from forms import routes
+from website import routes
 
 
-class Note(db.model):
-    id = db.Column(db.Integer, primary_key=True)
-    data = db.Column(db.String(10000))
-    date = db.Column(db.DateTime(timezone=True), default=func.now())
-    user_id = db.Column(db.Integer, db.ForeignKey('user id'))
+# class Note(db.model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     data = db.Column(db.String(10000))
+#     user_id = db.Column(db.Integer, db.ForeignKey('user id'))
     
     
 
