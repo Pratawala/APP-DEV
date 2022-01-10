@@ -1,7 +1,7 @@
 from website import db
 from datetime import datetime
-from sqlalchemy.sql import func
-from flask_login import UserMixin
+
+
 
 app= Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False #makes warning message go away
@@ -9,7 +9,8 @@ app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///site.db' #url of database
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 
-from flaskblog import routes
+from forms import routes
+
 
 class Note(db.model):
     id = db.Column(db.Integer, primary_key=True)
