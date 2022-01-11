@@ -16,13 +16,7 @@ class RegistrationForm(FlaskForm):  #AREA FOR HTML-PY ERRORR
 
     submit= SubmitField('Sign Up') #Python For the Submit python
 
-    def validate_username(self,username):
-
-        user = User.query.filter_by(username=username.data).first()
-
-        if True:
-            raise ValidationError('Validation Message')
-
+    
 class LoginForm(FlaskForm):  #AREA FOR HTML-PY ERRORR
     username= StringField("Username", validators=[DataRequired(),
         Length(min=2,max=20)]) #Username will also be used as label in html 

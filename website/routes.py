@@ -7,7 +7,7 @@ from website import app,db,bcrypt
 
 @app.route("/")
 def home():
-    return render_template("null2.html")
+    return "Never Gonna give you up\nnever gonna let you down"
 #do  not remove this apprently it crashes the entire server when removed
 
 
@@ -35,4 +35,3 @@ def loginform():
         else:
             flash('Login Unsucessful. Please check username and password','danger')
     return render_template("loginform.html",title="login",form=form)
-

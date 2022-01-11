@@ -1,9 +1,16 @@
 from website import db
 from datetime import datetime
+<<<<<<< HEAD
 from sqlalchemy.sql import func
 from flask import Flask
 from flask_login import UserMixin
 from sqlalchemy import SQLAlchemy
+=======
+from  flask import Flask
+from  flask_sqlalchemy import SQLAlchemy 
+from  flask_bcrypt import Bcrypt
+
+>>>>>>> 53ddecb47b70519e2ffb406e5c15a7a125f19d95
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False #makes warning message go away
@@ -11,13 +18,13 @@ app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///students.sqlite3' #url of data
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 
-from flaskblog import routes
+from website import routes
 
-class Note(db.model):
-    id = db.Column(db.Integer, primary_key=True)
-    data = db.Column(db.String(10000))
-    date = db.Column(db.DateTime(timezone=True), default=func.now())
-    user_id = db.Column(db.Integer, db.ForeignKey('user id'))
+
+# class Note(db.model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     data = db.Column(db.String(10000))
+#     user_id = db.Column(db.Integer, db.ForeignKey('user id'))
     
     
 
