@@ -5,9 +5,9 @@ from flask import Flask
 from flask_login import UserMixin
 from sqlalchemy import SQLAlchemy
 
-app= Flask(__name__)
+app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False #makes warning message go away
-app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///site.db' #url of database
+app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///students.sqlite3' #url of database
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 
