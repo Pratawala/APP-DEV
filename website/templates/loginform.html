@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Form</title>
-    <link rel="stylesheet" type="" href="style.css">
-<body>
+{% extends "base.html" %}
+{% block title %}loginform{% endblock %}
     <div class="loginbox">
         <img src="avatar.png" class="avatar">
             <h1>Login Here</h1>
@@ -21,7 +14,4 @@
             </form>
             
     </div>
-    
-</body>
-</head>
-</html>
+{% endblock %}
