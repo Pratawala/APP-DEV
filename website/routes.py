@@ -5,9 +5,10 @@ from website.forms import RegistrationForm,LoginForm
 from website import app,db,bcrypt
 
 
+
 @app.route("/")
 def home():
-    return "Never Gonna give you up\nnever gonna let you down"
+    return render_template('home.html')
 #do  not remove this apprently it crashes the entire server when removed
 
 

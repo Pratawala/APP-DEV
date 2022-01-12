@@ -1,6 +1,6 @@
 
 from flask_wtf import FlaskForm
-from wtforms import Form, BooleanField, StringField, PasswordField, validators
+from wtforms import  BooleanField, StringField, PasswordField,SubmitField
 from wtforms.validators import DataRequired ,Length,Email,EqualTo, ValidationError #imports  validators , what they validates is in their name  
 
 class RegistrationForm(FlaskForm):  #AREA FOR HTML-PY ERRORR

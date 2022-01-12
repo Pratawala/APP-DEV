@@ -1,16 +1,9 @@
 from website import db
 from datetime import datetime
-<<<<<<< HEAD
-from sqlalchemy.sql import func
 from flask import Flask
-from flask_login import UserMixin
-from sqlalchemy import SQLAlchemy
-=======
-from  flask import Flask
 from  flask_sqlalchemy import SQLAlchemy 
 from  flask_bcrypt import Bcrypt
 
->>>>>>> 53ddecb47b70519e2ffb406e5c15a7a125f19d95
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False #makes warning message go away
