@@ -39,14 +39,20 @@ class User(db.Model): #class will be mapped to a table
 
 class admin(User):
     pass
+    
 
 class master(User):
      id= db.Column(db.Integer ,primary_key=True)
-    pin= db.Column(db.String(4),unique=False,nullable=False)
+     pin= db.Column(db.String(4),unique=False,nullable=False)
+     subscription=db.Column(db.Boolean,nullable=False)
 
 class servant(User):
     id= db.Column(db.Integer ,primary_key=True)
+    username= db.Column(db.String(50),unique=True,nullable=False)
+    image_file =db.Column(db.String(20),nullable=False,default='default.jpg')
     pin= db.Column(db.String(4),unique=False,nullable=False)
+
+    
 
 
 # class Post(db.Model): #
