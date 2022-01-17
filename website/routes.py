@@ -36,3 +36,5 @@ def loginform():
         else:
             flash('Login Unsucessful. Please check username and password','danger')
     return render_template("loginform.html",title="login",form=form)
+
+@app.route()
