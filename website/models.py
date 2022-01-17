@@ -25,6 +25,17 @@ class User(db.Model): #class will be mapped to a table
     email= db.Column(db.String(120),unique=True,nullable=False)
     image_file =db.Column(db.String(20),nullable=False,default='default.jpg')
     password =db.Column(db.String(60),nullable=False)
+    
+    def create():
+        pass
+    def update():
+        pass
+    def read():
+        pass
+    def delete():
+        User.query.filter_by(id=id).delete()
+        db.session.commit()
+    
 # try:
     
     # confirm_password=db.Column(db.String(60),nullable=False)
@@ -37,20 +48,20 @@ class User(db.Model): #class will be mapped to a table
     def __repr__(self):#what will be printed when the user is created
         return f"User('{self.username}','{self.email}','{self.image_file}')"
 
-class admin(User):
+class admin(User.Model):
     pass
     
 
-class master(User):
+class master(User.Model):
      id= db.Column(db.Integer ,primary_key=True)
-     pin= db.Column(db.String(4),unique=False,nullable=False)
+     pin= db.Column(db.Integer(4),unique=False,nullable=False)
      subscription=db.Column(db.Boolean,nullable=False)
 
-class servant(User):
+class sub(User.Model):
     id= db.Column(db.Integer ,primary_key=True)
-    username= db.Column(db.String(50),unique=True,nullable=False)
+    name= db.Column(db.String(50),unique=True,nullable=False)
     image_file =db.Column(db.String(20),nullable=False,default='default.jpg')
-    pin= db.Column(db.String(4),unique=False,nullable=False)
+    pin= db.Column(db.Integer(4),unique=False,nullable=False)
 
     
 
