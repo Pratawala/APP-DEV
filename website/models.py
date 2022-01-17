@@ -5,13 +5,10 @@ from  flask_sqlalchemy import SQLAlchemy
 from  flask_bcrypt import Bcrypt
 
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False #makes warning message go away
-app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///students.sqlite3' #url of database
-db = SQLAlchemy(app)
-bcrypt = Bcrypt(app)
 
-from website import routes
+
+
+
 
 
 # class Note(db.model):
@@ -27,9 +24,9 @@ class User(db.Model): #class will be mapped to a table
     username= db.Column(db.String(50),unique=True,nullable=False) #Value is a string , 50 character long, unique and cannot be empty
     email= db.Column(db.String(120),unique=True,nullable=False)
     image_file =db.Column(db.String(20),nullable=False,default='default.jpg')
-    notes = db.relationship('Note')
-# try:
     password =db.Column(db.String(60),nullable=False)
+# try:
+    
     # confirm_password=db.Column(db.String(60),nullable=False)
 # except  password!=confirm_password:
 
@@ -37,11 +34,25 @@ class User(db.Model): #class will be mapped to a table
         # subscription_type=db.Column(db.String(1),default=1)
         #post=db.relationship('Post',backref="author",lazy=True)
 
-
-
-
     def __repr__(self):#what will be printed when the user is created
         return f"User('{self.username}','{self.email}','{self.image_file}')"
+
+class admin(User):
+    pass
+    
+
+class master(User):
+     id= db.Column(db.Integer ,primary_key=True)
+     pin= db.Column(db.String(4),unique=False,nullable=False)
+     subscription=db.Column(db.Boolean,nullable=False)
+
+class servant(User):
+    id= db.Column(db.Integer ,primary_key=True)
+    username= db.Column(db.String(50),unique=True,nullable=False)
+    image_file =db.Column(db.String(20),nullable=False,default='default.jpg')
+    pin= db.Column(db.String(4),unique=False,nullable=False)
+
+    
 
 
 # class Post(db.Model): #
