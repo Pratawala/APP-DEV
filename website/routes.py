@@ -1,9 +1,9 @@
 from flask import render_template,flash,redirect,url_for,flash,redirect
 from wtforms.validators import Email
 from website.models import User
-from website.forms import RegistrationForm,LoginForm
+from website.forms import RegistrationForm,LoginForm, UpdateaccForm
 from website import app,db,bcrypt
-
+from flask_login import current_user
 
 
 @app.route("/")
@@ -52,3 +52,23 @@ def loginform():   #login for admin/user
     return render_template("loginform.html",title="login",form=form)
 
 
+@app.route("logout")
+def logout():
+    logout_user()
+    return redirect(url_for('frontdoor'))
+
+@app.route("/account", methods=['GET','POST'])
+@login_required
+def account():
+    form =UpdateaccForm()  #create a form variable from form class imported 
+    if form.validate_on_submit():
+        current_user.username=form.username.data #what user will enter into the usernmame field
+        current_user.email=form.email.data #change the current data to what is inputted
+        db.session.commit()
+        flash("Information successfully updated!","success")
+        return redirect(url_for("account"))
+    elif request.method == 'GET':
+        form.username.data
+    image_file=url_for('templates',filename='pictures/'+current_user.image_file)
+    return render_template('accountpage.html',title="Account",
+     image_file=image_file,form=form)
