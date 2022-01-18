@@ -12,7 +12,7 @@ def home():
 #do  not remove this apprently it crashes the entire server when removed
 
 
-@app.route("/regisster",methods=['GET','POST'])
+@app.route("/register",methods=['GET','POST'])
 def register(): #creating user
     form=RegistrationForm()  #creates a form object from Registraion form
     if form.validate_on_submit():
@@ -35,19 +35,20 @@ def register_sub(): #sub creating user
         user=User(username=form.username.data,email=form.email.data,password=hashed_password)
         db.session.add(user)
         db.session.commit()
-        flash('Your account has been created! You are not able to log in','success')
+        flash('Your account has been created! You are now able to log in','success')
         flash(f'Account successfully created for {form.username.data}!') #flash displays a popup message
         return redirect(url_for("login"))
     return render_template("register.html",title="Register",form=form)
 
 @app.route('/html/loginform',methods=['GET','POST'])
-def loginform():
+def loginform():   #login for admin/user
     form=LoginForm
     if form.validate_on_submit():
         if form.email.data=='admin@blog.com' and form.password.data=='kingisme':
             flash('You have been logged in!','sucess')
-            return redirect(url_for('home'))
+            return redirect(url_for('admin.home'))
         else:
             flash('Login Unsucessful. Please check username and password','danger')
     return render_template("loginform.html",title="login",form=form)
+
 
