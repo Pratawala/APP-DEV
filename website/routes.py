@@ -3,11 +3,11 @@ import secrets
 
 from flask import render_template, url_for, flash, redirect, request, abort
 from website import app, db, bcrypt, mail
-from website.forms import (RegistrationForm, LoginForm, UpdateAccountForm,
+from website.forms import (RegistrationForm, LoginForm, UpdateaccForm,
                              PostForm, RequestResetForm, ResetPasswordForm)
 from website.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
-from flask_mail
+
 
 
 
@@ -117,10 +117,10 @@ def reset_token(token):
         flash('Your password has been updated! You are now able to log in', 'success')
         return redirect(url_for('login'))
     form = ResetPasswordForm()
-    if form.validate_on_submit():
+    if form.validate_on_submit(): 
             hashed_password=bcrypt.generate_password_hash(form.password).decode('utf-8') #hash value will be in string instead of bytes
             user.password=hashed_password #hashing the new user password
-            db.session.commit()
+            db.session.commit()#adding the new password to database
             flash('Password Successfully chan ged','success')
             flash(f'Account successfully created for {form.username.data}!') #flash displays a popup message
             return redirect(url_for("login"))
