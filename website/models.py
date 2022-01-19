@@ -5,11 +5,7 @@ from  flask_sqlalchemy import SQLAlchemy
 from  flask_bcrypt import Bcrypt
 from itsdangerous import TimeJSONWebSignatureSerializer as Serializer 
 from flask_login import UserMixin
-
-
-
-
-
+``
 
 # class Note(db.model):
 #     id = db.Column(db.Integer, primary_key=True)

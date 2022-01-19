@@ -1,3 +1,10 @@
+from flask import render_template,flash,redirect,url_for,flash,redirect
+from wtforms.validators import Email
+from website.models import User
+from website.forms import RegistrationForm,LoginForm, UpdateaccForm
+from website import app,db,bcrypt
+from flask_login import current_user
+from os import
 import os
 import secrets
 
@@ -56,12 +63,18 @@ def loginform():   #login for admin/user
             flash('Login Unsucessful. Please check username and password','danger')
     return render_template("loginform.html",title="login",form=form)
 
+@app.route('movie')
+def movie():
+
+
 
 
 @app.route("logout")
 def logout():
     logout_user()
     return redirect(url_for('frontdoor'))
+
+
 
 @app.route("/account", methods=['GET','POST'])
 @login_required
@@ -79,6 +92,12 @@ def update():
     return render_template('accountpage.html',title="Account",
      image_file=image_file,form=form)
 
+
+@app.route("/upload")
+
+@app.route("/delete")
+
+@app.route("/retrieve")
 def send_reset_email(user):
     token= user.get_reset_token()
     msg= Message('Password Reset Request',sender='210511G@mymail.nyp.edu.sg',recipients=[user.email]) 
