@@ -1,13 +1,13 @@
 import os
 import secrets
-from PIL import Image
+
 from flask import render_template, url_for, flash, redirect, request, abort
 from website import app, db, bcrypt, mail
 from website.forms import (RegistrationForm, LoginForm, UpdateAccountForm,
                              PostForm, RequestResetForm, ResetPasswordForm)
 from website.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
-
+from flask_mail
 
 
 
@@ -25,7 +25,7 @@ def register(): #creating user
         user=User(username=form.username.data,email=form.email.data,password=hashed_password)
         db.session.add(user)
         db.session.commit()
-        flash('Your account has been created! You are not able to log in','success')
+        flash('Your account has been created! You are now able to log in','success')
         flash(f'Account successfully created for {form.username.data}!') #flash displays a popup message
         return redirect(url_for("login"))
     return render_template("register.html",title="Register",form=form)
@@ -79,9 +79,16 @@ def update():
     return render_template('accountpage.html',title="Account",
      image_file=image_file,form=form)
 
+def send_reset_email(user):
+    token= user.get_reset_token()
+    msg= Message('Password Reset Request',sender='210511G@mymail.nyp.edu.sg',recipients=[user.email]) 
+    msg.body=f'''To reset your password,visit the following link:'
+{url_for('reset_token',token=token,_external=True) } 
+
+If you did not make this request, simply ignore this email and no changes will be made'''
 
 
-    @app.route("/reset_password", methods=['GET', 'POST'])
+@app.route("/reset_password", methods=['GET', 'POST'])
 def reset_request():
     if current_user.is_authenticated:
         return redirect(url_for('home'))
@@ -89,7 +96,7 @@ def reset_request():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         send_reset_email(user)
-        flash('An email has been sent with instructions to reset your password.', 'info')
+        flash('An email has been sent with instructions to reset your password.', 'info')#bootstrap alert button
         return redirect(url_for('login'))
     return render_template('reset_request.html', title='Reset Password', form=form)
 
@@ -109,4 +116,12 @@ def reset_token(token):
         db.session.commit()
         flash('Your password has been updated! You are now able to log in', 'success')
         return redirect(url_for('login'))
+    form = ResetPasswordForm()
+    if form.validate_on_submit():
+            hashed_password=bcrypt.generate_password_hash(form.password).decode('utf-8') #hash value will be in string instead of bytes
+            user.password=hashed_password #hashing the new user password
+            db.session.commit()
+            flash('Password Successfully chan ged','success')
+            flash(f'Account successfully created for {form.username.data}!') #flash displays a popup message
+            return redirect(url_for("login"))
     return render_template('reset_token.html', title='Reset Password', form=form)
