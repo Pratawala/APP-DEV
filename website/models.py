@@ -1,10 +1,10 @@
-from website import db
+from website import db ,login_manager,app
 from datetime import datetime
 from flask import Flask
 from  flask_sqlalchemy import SQLAlchemy 
 from  flask_bcrypt import Bcrypt
-
-
+from itsdangerous import TimeJSONWebSignatureSerializer as Serializer 
+from flask_login import UserMixin
 
 
 
@@ -26,6 +26,20 @@ class User(db.Model): #class will be mapped to a table
     image_file =db.Column(db.String(20),nullable=False,default='default.jpg')
     password =db.Column(db.String(60),nullable=False)
     
+    def get_reset_token(self,expire_sec=1800):
+        s = Serializer(app.config['SECRET_KEY'],expire_sec)
+        return s.dump({'user_id':self.id}).decode('utf-8')
+
+    @staticmethod #dont expect self, only expect the token method as an arguement as self variable is not used
+    def verify_reset_token(token):
+        s= Serializer(app.config['SECRET_KEY']) #s is a class serializer object
+        try:
+            user_id=s.loads(token)['user_id'] #check for validity of token
+        except:
+            return None 
+        return User.query.get(user_id) #returns user wit the user id
+
+
     def create():
         pass
     def update():
@@ -63,7 +77,7 @@ class sub(User.Model):
     image_file =db.Column(db.String(20),nullable=False,default='default.jpg')
     pin= db.Column(db.Integer(4),unique=False,nullable=False)
 
-    
+
 
 
 # class Post(db.Model): #

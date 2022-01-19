@@ -68,7 +68,7 @@ class UpdateaccForm(FlaskForm):  #AREA FOR HTML-PY ERRORR
     def validate_username(self, username):
         if username.data !=current_user.username:
             user = User.query.filter_by(username=username.data).first()   #Checks if user is already in database
-        if user: #if user is none this conditional will be activated
+        if user: #if user is True this conditional will be activated
             raise ValidationError('Username is already taken!')
  
     def validate_email(self, email): 
@@ -79,3 +79,21 @@ class UpdateaccForm(FlaskForm):  #AREA FOR HTML-PY ERRORR
 
 
 
+    class request_reset(FlaskForm):
+        email=email= StringField('Email',validators=[DataRequired(),Email()])
+        submit =SubmitField('Request Password reset')
+
+
+        def validate_email(self, email): 
+            if email.data !=current_user.username:
+                user = User.query.filter_by(email=email.data).first()   #Checks if user is already in database
+            if user is None: #if user is none this conditional will be activated
+                raise ValidationError('Email is not registered with website')
+
+    
+    
+    class reset_password(FlaskForm):
+         password= PasswordField('Password',validators=[DataRequired()])
+    confirm_password= PasswordField('Password',validators=[DataRequired(),EqualTo("password")]) 
+
+    submit= SubmitField("Reset Password")
