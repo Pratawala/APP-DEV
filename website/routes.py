@@ -52,9 +52,7 @@ def loginform():   #login for admin/user
     return render_template("loginform.html",title="login",form=form)
 
 
-<<<<<<< HEAD
 
-=======
 @app.route("logout")
 def logout():
     logout_user()
@@ -62,7 +60,7 @@ def logout():
 
 @app.route("/account", methods=['GET','POST'])
 @login_required
-def account():
+def update():
     form =UpdateaccForm()  #create a form variable from form class imported 
     if form.validate_on_submit():
         current_user.username=form.username.data #what user will enter into the usernmame field
@@ -75,4 +73,5 @@ def account():
     image_file=url_for('templates',filename='pictures/'+current_user.image_file)
     return render_template('accountpage.html',title="Account",
      image_file=image_file,form=form)
->>>>>>> 1b33d17b763ba722d1c261aa8d05e3e3456b8712
+
+
