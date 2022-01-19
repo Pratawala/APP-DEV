@@ -4,6 +4,7 @@ from website.models import User
 from website.forms import RegistrationForm,LoginForm, UpdateaccForm
 from website import app,db,bcrypt
 from flask_login import current_user
+from os import
 
 
 @app.route("/")
@@ -51,14 +52,18 @@ def loginform():   #login for admin/user
             flash('Login Unsucessful. Please check username and password','danger')
     return render_template("loginform.html",title="login",form=form)
 
+@app.route('movie')
+def movie():
 
-<<<<<<< HEAD
 
-=======
+
+
 @app.route("logout")
 def logout():
     logout_user()
     return redirect(url_for('frontdoor'))
+
+
 
 @app.route("/account", methods=['GET','POST'])
 @login_required
@@ -75,4 +80,10 @@ def account():
     image_file=url_for('templates',filename='pictures/'+current_user.image_file)
     return render_template('accountpage.html',title="Account",
      image_file=image_file,form=form)
->>>>>>> 1b33d17b763ba722d1c261aa8d05e3e3456b8712
+
+
+@app.route("/upload")
+
+@app.route("/delete")
+
+@app.route("/retrieve")
