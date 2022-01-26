@@ -3,7 +3,7 @@ from wtforms.validators import Email
 from website.models import User
 from website.forms import RegistrationForm,LoginForm, UpdateaccForm
 from website import app,db,bcrypt
-from flask_login import current_user
+from flask_login import current_user, login_required
 
 #from os import 
 import os
@@ -59,13 +59,13 @@ def loginform():   #login for admin/user
             flash('Login Unsucessful. Please check username and password','danger')
     return render_template("loginform.html",title="login",form=form)
 
-@app.route('movie')
+@app.route('/movie')
 def movie():
     loginform = True
 
 
 
-@app.route("logout")
+@app.route("/logout")
 def logout():
     logout_user()
     return redirect(url_for('frontdoor'))
@@ -93,8 +93,8 @@ def update():
 def upload_file():
     return render_template('upload.html')
 
-@app.route("/uploader", methods = ['GET','POST'])
-def upload_file():
+@app.route("/uploaded", methods = ['GET','POST'])
+def uploaded_file():#upload_file():
     if request.method == 'POST':
         f = request.files['file']
         f.save(secure_filename(f.filename))
@@ -104,7 +104,7 @@ def upload_file():
         app.run(debug = True)
     
     
-    @app.route("/delete")
+    # @app.route("/delete")
 
 @app.route("/retrieve")
 def send_reset_email(user):

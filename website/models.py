@@ -1,9 +1,9 @@
-from website import db ,login_manager,app
+from website import db, app#login_manager
 from datetime import datetime
 from flask import Flask
 from  flask_sqlalchemy import SQLAlchemy 
 from  flask_bcrypt import Bcrypt
-from itsdangerous import TimeJSONWebSignatureSerializer as Serializer 
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer 
 from flask_login import UserMixin
 
 
@@ -15,6 +15,7 @@ from flask_login import UserMixin
     
 
 class User(db.Model): #class will be mapped to a table #model allows data to be stored in db files
+    __abstract__ = True
     id= db.Column(db.Integer ,primary_key=True) #creating column (this is used by sql)
     username= db.Column(db.String(50),unique=True,nullable=False) #Value is a string , 50 character long, unique and cannot be empty
     email= db.Column(db.String(120),unique=True,nullable=False)
@@ -58,20 +59,20 @@ def verify_reset_token(token):
 def __repr__(self):#what will be printed when the user is created
     return f"User('{self.username}','{self.email}','{self.image_file}')"
 
-class admin(User.Model):
+class admin(User):#.Model):
     pass
 
 
-class master(User.Model):
+class master(User):#.Model):
     id= db.Column(db.Integer ,primary_key=True)
-    pin= db.Column(db.Integer(4),unique=False,nullable=False)
+    pin= db.Column(db.Integer,unique=False,nullable=False)
     subscription=db.Column(db.Boolean,nullable=False)
 
-class sub(User.Model):
+class sub(User):#.Model):
     id= db.Column(db.Integer ,primary_key=True)
 name= db.Column(db.String(50),unique=True,nullable=False)
 image_file =db.Column(db.String(20),nullable=False,default='default.jpg')
-pin= db.Column(db.Integer(4),unique=False,nullable=False)
+pin= db.Column(db.Integer,unique=False,nullable=False)
 
 
 

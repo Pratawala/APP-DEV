@@ -4,7 +4,7 @@ from wtforms import  BooleanField, StringField, PasswordField,SubmitField
 from wtforms.validators import DataRequired ,Length,Email,EqualTo, ValidationError #imports  validators , what they validates is in their name  
 from website.models import User
 from flask_login import current_user
-from flask_wtf.file import FIeldl,FIle 
+# from flask_wtf.file import FIeldl,FIle 
 
 
 #validates the input fields
