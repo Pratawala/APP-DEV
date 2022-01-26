@@ -97,3 +97,5 @@ class UpdateaccForm(FlaskForm):  #AREA FOR HTML-PY ERRORR
     confirm_password= PasswordField('Password',validators=[DataRequired(),EqualTo("password")]) 
 
     submit= SubmitField("Reset Password")
+    
+

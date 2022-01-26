@@ -65,7 +65,7 @@ def loginform():   #login for admin/user
 
 @app.route('movie')
 def movie():
-
+    loginform True
 
 
 
