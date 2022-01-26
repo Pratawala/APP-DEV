@@ -59,6 +59,7 @@ def loginform():   #login for admin/user
             flash('Login Unsucessful. Please check username and password','danger')
     return render_template("loginform.html",title="login",form=form)
 
+
 @app.route('/movie')
 def movie():
     loginform = True
