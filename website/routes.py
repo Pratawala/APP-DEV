@@ -4,16 +4,11 @@ from website.models import User
 from website.forms import RegistrationForm,LoginForm, UpdateaccForm
 from website import app,db,bcrypt
 from flask_login import current_user
-from os import
+
 import os
 import secrets
 
-from flask import render_template, url_for, flash, redirect, request, abort
-from website import app, db, bcrypt, mail
-from website.forms import (RegistrationForm, LoginForm, UpdateaccForm,
-                             PostForm, RequestResetForm, ResetPasswordForm)
-from website.models import User, Post
-from flask_login import login_user, current_user, logout_user, login_required
+ 
 
 
 
