@@ -5,6 +5,7 @@ from website.forms import RegistrationForm,LoginForm, UpdateaccForm
 from website import app,db,bcrypt
 from flask_login import current_user
 
+from os import 
 import os
 import secrets
 
@@ -60,7 +61,7 @@ def loginform():   #login for admin/user
 
 @app.route('movie')
 def movie():
-
+    loginform True
 
 
 
@@ -89,8 +90,21 @@ def update():
 
 
 @app.route("/upload")
+def upload_file():
+    return render_template('upload.html')
 
-@app.route("/delete")
+@app.route("/uploader", methods = ['GET','POST'])
+def upload_file():
+    if request.method == 'POST':
+        f = request.files['file']
+        f.save(secure_filename(f.filename))
+        return 'file uploaded successfully'
+    
+    if __name__ == '__main__':
+        app.run(debug = True)
+    
+    
+    @app.route("/delete")
 
 @app.route("/retrieve")
 def send_reset_email(user):

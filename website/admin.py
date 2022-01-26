@@ -4,3 +4,10 @@ from website.models import User
 from website.forms import RegistrationForm,LoginForm, UpdateaccForm
 from website import app,db,bcrypt
 from flask_login import current_user
+
+
+@app.route("/upload")
+
+@app.route("/delete")
+
+@app.route("/retrieve")
