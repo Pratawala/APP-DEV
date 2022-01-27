@@ -54,7 +54,7 @@ def loginform():   #login for admin/user
     if form.validate_on_submit():
         if form.email.data=='admin@blog.com' and form.password.data=='kingisme':
             flash('You have been logged in!','sucess')
-            return redirect(url_for('admin.home'))
+            return redirect(url_for('home.html'))
         else:
             flash('Login Unsucessful. Please check username and password','danger')
     return render_template("loginform.html",title="login",form=form)
@@ -93,6 +93,7 @@ def update():
 @app.route("/upload")
 def upload_file():
     return render_template('upload.html')
+
 
 @app.route("/uploaded", methods = ['GET','POST'])
 def uploaded_file():#upload_file():
@@ -154,3 +155,10 @@ def reset_token(token):
             flash(f'Account successfully created for {form.username.data}!') #flash displays a popup message
             return redirect(url_for("login"))
     return render_template('reset_token.html', title='Reset Password', form=form)
+
+@app.route('/database', methods=['GET', 'POST'])
+def database():
+    query = []
+    for i in session.query(website.models):
+        query.append((i.title, i.post, i.date))
+    return render_template('database.html', query = query)
