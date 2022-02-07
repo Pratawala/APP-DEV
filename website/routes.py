@@ -162,3 +162,7 @@ def database():
     for i in session.query(website.models):
         query.append((i.title, i.post, i.date))
     return render_template('database.html', query = query)
+
+@app.route("/forgot_password/", methods=['GET', 'POST'])
+def forgotpw():
+    return render_template('forgotpw.html',)

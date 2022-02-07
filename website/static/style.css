@@ -63,7 +63,7 @@ h1 {
     background: transparent;
     outline: none;
     height: 40px;
-    color: #fff;
+    color: #000000;
     font-size: 16px;
 }
 
@@ -155,6 +155,7 @@ h1 {
     margin: -5px 0 20px 5px;
     color: #a6a6a6;
     cursor: pointer;
+    text-decoration: none;
     }
     .pass:hover{
     text-decoration: underline;
@@ -170,6 +171,7 @@ h1 {
         font-weight: 700;
         cursor: pointer;
         outline: none;
+        margin-top: 15px;
     }
     /* input[type="submit"]:hover{
         border-color: #269d9;
