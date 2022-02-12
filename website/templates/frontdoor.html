@@ -5,24 +5,17 @@
 {% block content %}
 <p>frontdoor</p>
 {% block title %}home{% endblock %}
-    <form method="post">
-        <div class="txt_field">
-            <input type="text" required>
-            <span></span>
-            <label>Username</label>
+    <header class="showcase">
+        <div class="showcase-top">
+    
+        <a href="#" class="btn btn-rounded">Log In</a>
         </div>
-        <div class="txt_field">
-            <input type="password" required>
-            <span></span>
-            <label>Password</label>
+        <div class="showcase-content">
+        <h1>See what's next</h1>
+        <p>Watch anywhere</p>
+        <a href="#" class="btn btn-xl">Sign Up Now <i class="fas fa-chevron-right btn-icon"></i></a>
         </div>
-        <div class="pass">Forgot Password?</div>
-        <input type="submit" value="Login">
-        <div class="signup_link">
-            Not a member? <a href="#">Signup</a>
-        </div>
-    </form>
-
+    </header>
 
 {% block content %}
 <p>Front Door</p>
