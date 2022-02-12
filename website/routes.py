@@ -156,12 +156,14 @@ def reset_token(token):
             return redirect(url_for("login"))
     return render_template('reset_token.html', title='Reset Password', form=form)
 
+
 @app.route('/database', methods=['GET', 'POST'])
 def database():
     query = []
     for i in session.query(website.models):
         query.append((i.title, i.post, i.date))
     return render_template('database.html', query = query)
+
 
 @app.route("/forgot_password/", methods=['GET', 'POST'])
 def forgotpw():
