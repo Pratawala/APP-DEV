@@ -1,4 +1,4 @@
-from website import db, app#login_manager
+from website import db, app, login_manager
 from datetime import datetime
 from flask import Flask
 from  flask_sqlalchemy import SQLAlchemy 
@@ -12,10 +12,11 @@ from flask_login import UserMixin
 #     data = db.Column(db.String(10000))
 #     user_id = db.Column(db.Integer, db.ForeignKey('user id'))
     
-    
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
-class User(db.Model): #class will be mapped to a table #model allows data to be stored in db files
-    __abstract__ = True
+class User(db.Model, UserMixin): #class will be mapped to a table #model allows data to be stored in db files
     id= db.Column(db.Integer ,primary_key=True) #creating column (this is used by sql)
     username= db.Column(db.String(50),unique=True,nullable=False) #Value is a string , 50 character long, unique and cannot be empty
     email= db.Column(db.String(120),unique=True,nullable=False)
@@ -59,20 +60,20 @@ def verify_reset_token(token):
 def __repr__(self):#what will be printed when the user is created
     return f"User('{self.username}','{self.email}','{self.image_file}')"
 
-class admin(User):#.Model):
-    pass
+# class admin(User):#.Model):
+#     pass
 
 
-class master(User):#.Model):
-    id= db.Column(db.Integer ,primary_key=True)
-    pin= db.Column(db.Integer,unique=False,nullable=False)
-    subscription=db.Column(db.Boolean,nullable=False)
+# class master(User):#.Model):
+#     id= db.Column(db.Integer ,primary_key=True)
+#     pin= db.Column(db.Integer,unique=False,nullable=False)
+#     subscription=db.Column(db.Boolean,nullable=False)
 
-class sub(User):#.Model):
-    id= db.Column(db.Integer ,primary_key=True)
-name= db.Column(db.String(50),unique=True,nullable=False)
-image_file =db.Column(db.String(20),nullable=False,default='default.jpg')
-pin= db.Column(db.Integer,unique=False,nullable=False)
+# class sub(User):#.Model):
+#     id= db.Column(db.Integer ,primary_key=True)
+# name= db.Column(db.String(50),unique=True,nullable=False)
+# image_file =db.Column(db.String(20),nullable=False,default='default.jpg')
+# pin= db.Column(db.Integer,unique=False,nullable=False)
 
 
 
