@@ -15,7 +15,7 @@ class RegistrationForm(FlaskForm):  #AREA FOR HTML-PY ERRORR
     email= StringField('Email',validators=[DataRequired(),Email()])
 
     password= PasswordField('Password',validators=[DataRequired()])
-    confirm_password= PasswordField('Password',validators=[DataRequired(),EqualTo("password")]) 
+    confirm_password= PasswordField('Confirm Password',validators=[DataRequired(),EqualTo("password")]) 
 
     submit= SubmitField('Sign Up') #Python For the Submit python
 
@@ -52,7 +52,7 @@ class LoginForm(FlaskForm):  #AREA FOR HTML-PY ERRORR
     
 
 
-    Remember =BooleanField('Remember Me') #Use cookies to remember user
+    remember =BooleanField('Remember Me') #Use cookies to remember user
     submit= SubmitField('Login') #Python For the Submit python
 
 

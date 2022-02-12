@@ -3,7 +3,7 @@ from wtforms.validators import Email
 from website.models import User
 from website.forms import RegistrationForm, LoginForm, UpdateaccForm
 from website import app,db,bcrypt
-from flask_login import current_user, login_required
+from flask_login import current_user, login_required, login_user, logout_user
 from flask_mail import Message
 #from os import 
 import os
@@ -20,18 +20,19 @@ def home():
 #do  not remove this apprently it crashes the entire server when removed
 
 
-@app.route("/register",methods=['GET','POST'])
-def register(): #creating user
-    form=RegistrationForm()  #creates a form object from Registraion form
+@app.route("/register", methods=['GET', 'POST'])
+def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    form = RegistrationForm()
     if form.validate_on_submit():
-        hashed_password=bcrypt.generate_password_hash(form.password).decode('utf-8') #hash value will be in string instead of bytes
-        user=User(username=form.username.data,email=form.email.data,password=hashed_password)
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user = User(username=form.username.data, email=form.email.data, password=hashed_password)
         db.session.add(user)
         db.session.commit()
-        flash('Your account has been created! You are now able to log in','success')
-        flash(f'Account successfully created for {form.username.data}!') #flash displays a popup message
-        return redirect(url_for("login"))
-    return render_template("register.html",title="Register",form=form)
+        flash('Your account has been created! You are now able to log in', 'success')
+        return redirect(url_for('login'))
+    return render_template('register.html', title='Register', form=form)
     #register.html is the file name for the register form
 
 
@@ -48,16 +49,20 @@ def register_sub(): #sub creating user
         return redirect(url_for("login"))
     return render_template("register.html",title="Register",form=form)
 
-@app.route('/html/loginform',methods=['GET','POST'])
-def loginform():   #login for admin/user
-    form=LoginForm
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    form = LoginForm()
     if form.validate_on_submit():
-        if form.email.data=='admin@blog.com' and form.password.data=='kingisme':
-            flash('You have been logged in!','sucess')
-            return redirect(url_for('home.html'))
+        user = User.query.filter_by(email=form.email.data).first()
+        if user and bcrypt.check_password_hash(user.password, form.password.data):
+            login_user(user, remember=form.remember.data)
+            next_page = request.args.get('next')
+            return redirect(next_page) if next_page else redirect(url_for('home'))
         else:
-            flash('Login Unsucessful. Please check username and password','danger')
-    return render_template("loginform.html",title="login",form=form)
+            flash('Login Unsuccessful. Please check email and password', 'danger')
+    return render_template('login.html', title='Login', form=form)
 
 
 @app.route('/movie')
@@ -69,7 +74,7 @@ def movie():
 @app.route("/logout")
 def logout():
     logout_user()
-    return redirect(url_for('frontdoor'))
+    return redirect(url_for('home'))
 
 
 
