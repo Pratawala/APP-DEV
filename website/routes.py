@@ -5,7 +5,7 @@ from website.forms import RegistrationForm,LoginForm, UpdateaccForm
 from website import app,db,bcrypt
 from flask_login import current_user
 
-from os import 
+# from os import 
 import os
 import secrets
 
