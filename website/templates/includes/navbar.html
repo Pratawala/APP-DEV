@@ -11,6 +11,21 @@
           Home
         </a>
       </li>
+	  {% if current_user.is_authenticated %}
+	  <li>
+        <a href="{{url_for('account') if title != 'Account' else '#'}}" class="nav-link {{'active' if title=='Account' else 'link-dark'}}">
+          <!-- <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg> -->
+          Account
+        </a>
+      </li>
+      <li>
+        <a href="{{url_for('logout') if title != 'Logout' else '#'}}" class="nav-link {{'active' if title=='Logout' else 'link-dark'}}">
+          <!-- <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg> -->
+          Logout
+        </a>
+      </li>
+	{% else %}
+	<li>
         <a href="{{url_for('register') if title != 'Register' else '#'}}" class="nav-link {{'active' if title=='Register' else 'link-dark'}}">
           <!-- <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg> -->
           Register
@@ -22,6 +37,7 @@
           Login
         </a>
       </li>
+	{% endif %}
     </ul>
 	<style>
 		.nav-link {
@@ -29,7 +45,7 @@
 			color: #a020f0;
 		}
 		.active { 
-			background: #a020f0 !important;
+			background: #800080 !important;
 			color: white !important;
 		}
 		.link-dark:hover {
