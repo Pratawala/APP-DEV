@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}home{% endblock %}
+
+
+{% block content %}
+    <div class="center">
+        <h1>Login</h1>
+        <form method="post">
+            {{ form.hidden_tag() }}
+            {% for field in form %}
+            {% if field not in [form.csrf_token, form.submit] %}
+            <div class="{{'txt_field' if field != form.remember}}">
+                {% if field.errors %}
+                {{ field }}
+                <div class="small text-danger" style="position:absolute;">
+                    {% for error in field.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                    {{ field }}
+                    {% endif %}
+                    {{ field.label }}
+                </div>
+            {% else %}
+            {% if field == form.submit %}
+            {{ field }}
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            <div class="signup_link">
+                Not a member? <a href="{{url_for('register')}}">Sign Up</a>
+            </div>
+        </form>
+    </div>
+    
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}landingpage{% endblock %}
+
+
+{% block content %}
+<ul id="navigation">
+    {% for item in navigation %}
+        <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
+    {% endfor %}
+    </ul>
+
+    <h1></h1>
+    {{ a_variable }}
+    {% include 'includes/landing.html'  %} 
+
+
+
+
+{% endblock %}
