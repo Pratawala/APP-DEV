@@ -1,9 +1,11 @@
 import os
-from flask import Flask
+import stripe
+from flask import Flask , jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_mail import Mail
 from flask_login import LoginManager
+
 
 db = SQLAlchemy()
 DB_NAME = "database.db"
@@ -25,6 +27,13 @@ mail=Mail(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
+
+stripe_keys = {
+    "secret_key":os.environ["sk_test_51KT4SyFLyxECVHbXNHXKxESqhvT1lJ3u07HTsO0k7Tg9wcDUKS6M7cak6Dm7mRq15US3kEhjpGulrPSswoT3yR6e00J8ORGGR5"],
+    "publishable_key":os.environ["pk_test_51KT4SyFLyxECVHbXt3E43EYTXtACTmO51biKlpfQhuMriYsPK9pFJTndsq5yU7fcetS5pAaBZubWgTFXmqIcJhkX00n2Q2FZcQ"]
+}
+
+stripe.api_key = stripe_keys["sk_test_51KT4SyFLyxECVHbXNHXKxESqhvT1lJ3u07HTsO0k7Tg9wcDUKS6M7cak6Dm7mRq15US3kEhjpGulrPSswoT3yR6e00J8ORGGR5"]
 
 from website import routes
 
