@@ -5,7 +5,7 @@
 {% block content %}
     <div class="center">
         <h1>Login</h1>
-        <form method="post">
+        <form method="post" autocomplete="off">
             {{ form.hidden_tag() }}
             {% for field in form %}
             {% if field not in [form.csrf_token, form.submit] %}
