@@ -23,9 +23,10 @@
             {% with messages = get_flashed_messages(with_categories=true) %}
               {% if messages %}
                 {% for category, message in messages %}
-                  <div class="alert alert-{{ category }}">
-                    {{ message }}
-                  </div>
+                  
+                  <script>
+                    window.alert("{{ message }}")
+                  </script>
                 {% endfor %}
               {% endif %}
             {% endwith %}

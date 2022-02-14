@@ -3,6 +3,7 @@ from sqlalchemy import true
 from wtforms.validators import Email
 from website.models import User
 from website.forms import RegistrationForm, LoginForm, UpdateAccountForm, RequestResetForm, ResetPasswordForm
+from website.forms import RegistrationForm, LoginForm, UpdateAccountForm , RequestResetForm, ResetForm
 from website import app,db,bcrypt
 from flask_login import current_user, login_required, login_user, logout_user
 from flask_mail import Message
@@ -179,19 +180,19 @@ def reset_token(token):
     if user is None:
         flash('That is an invalid or expired token', 'warning') #bootstrap warning class
         return redirect(url_for('reset_request'))
-    form = ResetPasswordForm()
+    form = RequestResetForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         user.password = hashed_password
         db.session.commit()
         flash('Your password has been updated! You are now able to log in', 'success')
         return redirect(url_for('login'))
-    form = ResetPasswordForm()
+    form = ResetForm()
     if form.validate_on_submit(): 
             hashed_password=bcrypt.generate_password_hash(form.password).decode('utf-8') #hash value will be in string instead of bytes
             user.password=hashed_password #hashing the new user password
             db.session.commit()#adding the new password to database
-            flash('Password Successfully chan ged','success')
+            flash('Password Successfully changed','success')
             flash(f'Account successfully created for {form.username.data}!') #flash displays a popup message
             return redirect(url_for("login"))
     return render_template('reset_token.html', title='Reset Password', form=form)
@@ -218,4 +219,19 @@ def loginsuccess():
 
     
 
+@app.route('/payment')
+def test0():
+    return render_template('payment.html')
+
+@app.route('/reqotp')
+def test1():
+    return render_template('reqotp.html')
+
+@app.route('/otp')
+def test2():
+    return render_template('otp.html')
+
+@app.route('/newpassword')
+def test3():
+    return render_template('newpassword.html')
 

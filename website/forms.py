@@ -38,16 +38,6 @@ class RegistrationForm(FlaskForm):  #AREA FOR HTML-PY ERRORR
             raise ValidationError('Email is already in use!')
     
     
-    # class PaymentForm(FlaskForm):  #AREA FOR HTML-PY ERRORR
-    #     card_number= StringField("Card Number", validators=[DataRequired(),
-    #         Length(min=16, max=16 ,message="Card number must be 16 digits long!")])  #Username will also be used as label in html 
-
-    # expiry_date= DateTimeField('Expiry Date (MM/YY)',validators=[DataRequired()])
-
-    # issue_date= DateTimeField('Expiry Date (MM/YY)',validators=[DataRequired()])
-
-    # cvv= StringField('CVV',validators=[DataRequired(),
-    #     Length(min=3,max=3)])
    
 
     submit= SubmitField('Sign Up') #Python For the Submit python
@@ -127,6 +117,23 @@ class ResetPasswordForm(FlaskForm):
     confirm_password = PasswordField('Confirm Password',
                                      validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Reset Password')
+    email=email= StringField('Email',validators=[DataRequired(),Email()])
+    submit =SubmitField('Request Password reset')
+
+
+    def validate_email(self, email): 
+        if email.data !=current_user.username:
+            user = User.query.filter_by(email=email.data).first()   #Checks if user is already in database
+        if user is None: #if user is none this conditional will be activated
+            raise ValidationError('Email is not registered with website')
+
+
+
+class ResetForm(FlaskForm):
+        password= PasswordField('Password',validators=[DataRequired()])
+confirm_password= PasswordField('Password',validators=[DataRequired(),EqualTo("password")]) 
+
+submit= SubmitField("Reset Password")
 
 
     
