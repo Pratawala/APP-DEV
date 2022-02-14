@@ -1,9 +1,6 @@
-<<<<<<< HEAD
 from flask import render_template,flash,redirect,url_for,flash,redirect,request,jsonify
-=======
 from flask import render_template,flash,redirect,url_for,flash,redirect,request,session
 from sqlalchemy import true
->>>>>>> 3b0d69429c6da21b36cd1e1e08b3c2a67a7ae659
 from wtforms.validators import Email
 from website.models import User
 from website.forms import RegistrationForm, LoginForm, UpdateAccountForm, RequestResetForm, ResetPasswordForm
