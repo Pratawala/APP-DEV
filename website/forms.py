@@ -89,27 +89,6 @@ class LoginForm(FlaskForm):  #AREA FOR HTML-PY ERRORR
     submit= SubmitField('Login') #Python For the Submit python
 
 
-
-class UpdateaccForm(FlaskForm):  #AREA FOR HTML-PY ERRORR
-    username= StringField("Username", validators=[DataRequired(),
-        Length(min=2,max=20)]) #Username will also be used as label in html 
-
-    email= StringField('Email',validators=[DataRequired(),Email()])
-    #insert code to update profile pic, will add in future
-    submit= SubmitField('Save Changes') #Python For the Submit python
-
-    def validate_username(self, username):
-        if username.data !=current_user.username:
-            user = User.query.filter_by(username=username.data).first()   #Checks if user is already in database
-        if user: #if user is True this conditional will be activated
-            raise ValidationError('Username is already taken!')
- 
-    def validate_email(self, email): 
-        if email.data !=current_user.username:
-            user = User.query.filter_by(email=email.data).first()   #Checks if user is already in database
-        if user: #if user is none this conditional will be activated
-            raise ValidationError('Email is already in use!')
-
 class UpdateAccountForm(FlaskForm):
     username = StringField('Username',
                            validators=[DataRequired(), Length(min=2, max=20)])
@@ -129,25 +108,25 @@ class UpdateAccountForm(FlaskForm):
             user = User.query.filter_by(email=email.data).first()
             if user:
                 raise ValidationError('That email is taken. Please choose a different one.')
+            
+    
 
-class request_reset(FlaskForm):
-    email=email= StringField('Email',validators=[DataRequired(),Email()])
-    submit =SubmitField('Request Password reset')
+class RequestResetForm(FlaskForm):
+    email = StringField('Email',
+                        validators=[DataRequired(), Email()])
+    submit = SubmitField('Request Password Reset')
+
+    def validate_email(self, email):
+        user = User.query.filter_by(email=email.data).first()
+        if user is None:
+            raise ValidationError('There is no account with that email. You must register first.')
 
 
-    def validate_email(self, email): 
-        if email.data !=current_user.username:
-            user = User.query.filter_by(email=email.data).first()   #Checks if user is already in database
-        if user is None: #if user is none this conditional will be activated
-            raise ValidationError('Email is not registered with website')
-
-
-
-class reset_password(FlaskForm):
-        password= PasswordField('Password',validators=[DataRequired()])
-confirm_password= PasswordField('Password',validators=[DataRequired(),EqualTo("password")]) 
-
-submit= SubmitField("Reset Password")
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField('Password', validators=[DataRequired()])
+    confirm_password = PasswordField('Confirm Password',
+                                     validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Reset Password')
 
 
     

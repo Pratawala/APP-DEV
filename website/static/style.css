@@ -13,7 +13,7 @@
     background-repeat:no-repeat;
     background-size:cover;
     height: 100vh;
-    overflow: hidden;
+    overflow: auto;
   }
 
   .loginbox {
@@ -303,3 +303,25 @@
   .signup_link a:hover{
       text-decoration: underline;
   }
+  /*---Movie Page---*/
+
+  .container{
+    max-width:1200px;
+    margin: auto;
+    background: white;
+    overflow:
+    }
+    .gallery{
+    margin:5px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 390px;
+    }
+    .gallery img {
+    width: 100%;
+    height: 70%;
+    }
+    .desc{
+    padding: 15px;
+    text-align: center;
+    }

@@ -25,7 +25,7 @@ class User(db.Model, UserMixin): #class will be mapped to a table #model allows 
 
     def get_reset_token(self,expire_sec=1800):
         s = Serializer(app.config['SECRET_KEY'],expire_sec)
-        return s.dump({'user_id':self.id}).decode('utf-8')
+        return s.dumps({'user_id':self.id}).decode('utf-8')
 
 @staticmethod #dont expect self, only expect the token method as an arguement as self variable is not used
 def verify_reset_token(token):

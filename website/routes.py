@@ -1,7 +1,8 @@
-from flask import render_template,flash,redirect,url_for,flash,redirect,request
+from flask import render_template,flash,redirect,url_for,flash,redirect,request,session
+from sqlalchemy import true
 from wtforms.validators import Email
 from website.models import User
-from website.forms import RegistrationForm, LoginForm, UpdateAccountForm
+from website.forms import RegistrationForm, LoginForm, UpdateAccountForm, RequestResetForm, ResetPasswordForm
 from website import app,db,bcrypt
 from flask_login import current_user, login_required, login_user, logout_user
 from flask_mail import Message
@@ -52,22 +53,22 @@ def register_sub(): #sub creating user
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('home'))
+        return redirect(url_for('moviepage'))
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for('home'))
+            return redirect(next_page) if next_page else redirect(url_for('moviepage'))
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
     return render_template('login.html', title='Login', form=form)
 
 
-@app.route('/movie')
-def movie():
-    loginform = True
+@app.route('/moviepage')
+def moviepage():
+    return render_template('moviepage.html', title='Movies')
 
 
 
@@ -135,6 +136,7 @@ def upload_file():
 
 @app.route("/uploaded", methods = ['GET','POST'])
 def uploaded_file():#upload_file():
+    secure_filename = true
     if request.method == 'POST':
         f = request.files['file']
         f.save(secure_filename(f.filename))
@@ -166,7 +168,7 @@ def reset_request():
         send_reset_email(user)
         flash('An email has been sent with instructions to reset your password.', 'info')#bootstrap alert button
         return redirect(url_for('login'))
-    return render_template('reset_request.html', title='Reset Password', form=form)
+    return render_template('newpassword.html', title='Reset Password', form=form)
 
 
 @app.route("/reset_password/<token>", methods=['GET', 'POST'])
@@ -206,3 +208,14 @@ def database():
 @app.route("/forgot_password/", methods=['GET', 'POST'])
 def forgotpw():
     return render_template('forgotpw.html',)
+
+
+@app.route("/loginsuccess", methods=['GET', 'POST'])
+def loginsuccess():
+    if current_user.is_authenticated:
+        return redirect(url_for('moviepage'))
+    
+
+    
+
+
