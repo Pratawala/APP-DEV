@@ -130,7 +130,7 @@ class UpdateAccountForm(FlaskForm):
             if user:
                 raise ValidationError('That email is taken. Please choose a different one.')
 
-class request_reset(FlaskForm):
+class RequestResetForm(FlaskForm):
     email=email= StringField('Email',validators=[DataRequired(),Email()])
     submit =SubmitField('Request Password reset')
 
@@ -143,7 +143,7 @@ class request_reset(FlaskForm):
 
 
 
-class reset_password(FlaskForm):
+class ResetForm(FlaskForm):
         password= PasswordField('Password',validators=[DataRequired()])
 confirm_password= PasswordField('Password',validators=[DataRequired(),EqualTo("password")]) 
 
