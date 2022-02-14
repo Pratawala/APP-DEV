@@ -29,11 +29,11 @@ login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
 
 stripe_keys = {
-    "secret_key":os.environ["sk_test_51KT4SyFLyxECVHbXNHXKxESqhvT1lJ3u07HTsO0k7Tg9wcDUKS6M7cak6Dm7mRq15US3kEhjpGulrPSswoT3yR6e00J8ORGGR5"],
-    "publishable_key":os.environ["pk_test_51KT4SyFLyxECVHbXt3E43EYTXtACTmO51biKlpfQhuMriYsPK9pFJTndsq5yU7fcetS5pAaBZubWgTFXmqIcJhkX00n2Q2FZcQ"]
+    "secret_key":"sk_test_51KT4SyFLyxECVHbXNHXKxESqhvT1lJ3u07HTsO0k7Tg9wcDUKS6M7cak6Dm7mRq15US3kEhjpGulrPSswoT3yR6e00J8ORGGR5",
+    "publishable_key":"pk_test_51KT4SyFLyxECVHbXt3E43EYTXtACTmO51biKlpfQhuMriYsPK9pFJTndsq5yU7fcetS5pAaBZubWgTFXmqIcJhkX00n2Q2FZcQ"
 }
 
-stripe.api_key = stripe_keys["sk_test_51KT4SyFLyxECVHbXNHXKxESqhvT1lJ3u07HTsO0k7Tg9wcDUKS6M7cak6Dm7mRq15US3kEhjpGulrPSswoT3yR6e00J8ORGGR5"]
+stripe.api_key = stripe_keys["secret_key"]
 
 from website import routes
 

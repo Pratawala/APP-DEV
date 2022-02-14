@@ -1,13 +1,14 @@
-from flask import render_template,flash,redirect,url_for,flash,redirect,request
+from flask import render_template,flash,redirect,url_for,flash,redirect,request,jsonify
 from wtforms.validators import Email
 from website.models import User
 from website.forms import RegistrationForm, LoginForm, UpdateAccountForm , RequestResetForm, ResetForm
-from website import app,db,bcrypt
+from website import app,db,bcrypt,stripe_keys
 from flask_login import current_user, login_required, login_user, logout_user
 from flask_mail import Message
 #from os import 
 import os
 import secrets
+import stripe
 from PIL import Image
  
 
@@ -222,4 +223,43 @@ def test2():
 @app.route('/newpassword')
 def test3():
     return render_template('newpassword.html')
+
+
+@app.route("/config")
+def get_publishable_key():
+    stripe_config = {"publicKey": stripe_keys["publishable_key"]}
+    return jsonify(stripe_config)
+
+@app.route("/create-checkout-session")
+def create_checkout_session():
+    domain_url = "http://127.0.0.1:5000/"
+    stripe.api_key = stripe_keys["secret_key"]
+
+    try:
+        # Create new Checkout Session for the order
+        # Other optional params include:
+        # [billing_address_collection] - to display billing address details on the page
+        # [customer] - if you have an existing Stripe Customer ID
+        # [payment_intent_data] - capture the payment later
+        # [customer_email] - prefill the email input in the form
+        # For full details see https://stripe.com/docs/api/checkout/sessions/create
+
+        # ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
+        checkout_session = stripe.checkout.Session.create(
+            success_url=domain_url + "success?session_id={CHECKOUT_SESSION_ID}",
+            cancel_url=domain_url + "cancelled",
+            payment_method_types=["card"],
+            mode="payment",
+            line_items=[
+                {
+                    "name": "T-shirt",
+                    "quantity": 1,
+                    "currency": "usd",
+                    "amount": "2000",
+                }
+            ]
+        )
+        return jsonify({"sessionId": checkout_session["id"]})
+    except Exception as e:
+        return jsonify(error=str(e)), 403
 
