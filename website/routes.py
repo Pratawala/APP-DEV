@@ -1,4 +1,9 @@
+<<<<<<< HEAD
+from flask import render_template,flash,redirect,url_for,flash,redirect,request,jsonify
+from flask import render_template,flash,redirect,url_for,flash,redirect,request,session
+=======
 from flask import render_template,flash,redirect,url_for,flash,redirect,request,session,jsonify,request
+>>>>>>> bba9e21014dcccdf6f1dee38f52ed4f53d97ccd3
 from sqlalchemy import true
 from wtforms.validators import Email
 from website.models import User
