@@ -208,5 +208,18 @@ def forgotpw():
     return render_template('forgotpw.html',)
 
 @app.route('/payment')
-def test():
+def test0():
     return render_template('payment.html')
+
+@app.route('/reqotp')
+def test1():
+    return render_template('reqotp.html')
+
+@app.route('/otp')
+def test2():
+    return render_template('otp.html')
+
+@app.route('/newpassword')
+def test3():
+    return render_template('newpassword.html')
+
