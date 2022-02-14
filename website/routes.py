@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 from flask import render_template,flash,redirect,url_for,flash,redirect,request,jsonify
 from flask import render_template,flash,redirect,url_for,flash,redirect,request,session
+=======
+from flask import render_template,flash,redirect,url_for,flash,redirect,request,session,jsonify,request
+>>>>>>> bba9e21014dcccdf6f1dee38f52ed4f53d97ccd3
 from sqlalchemy import true
 from wtforms.validators import Email
 from website.models import User
@@ -265,10 +269,10 @@ def create_checkout_session():
             mode="payment",
             line_items=[
                 {
-                    "name": "T-shirt",
+                    "name": "H-movie Premium Plan (Monthly)",
                     "quantity": 1,
-                    "currency": "usd",
-                    "amount": "2000",
+                    "currency": "sgd",
+                    "amount": "1000",
                 }
             ]
         )
@@ -276,3 +280,37 @@ def create_checkout_session():
     except Exception as e:
         return jsonify(error=str(e)), 403
 
+
+@app.route("/success")
+def success():
+    return render_template("success.html")
+
+
+@app.route("/cancelled")
+def cancelled():
+    return render_template("cancelled.html")
+
+
+@app.route("/webhook", methods=["POST"]) #prints a message everytime payment goes through successfully
+def stripe_webhook():
+    payload = request.get_data(as_text=True)
+    sig_header = request.headers.get("Stripe-Signature")
+
+    try:
+        event = stripe.Webhook.construct_event(
+            payload, sig_header, stripe_keys["endpoint_secret"]
+        )
+
+    except ValueError as e:
+        # Invalid payload
+        return "Invalid payload", 400
+    except stripe.error.SignatureVerificationError as e:
+        # Invalid signature
+        return "Invalid signature", 400
+
+    # Handle the checkout.session.completed event
+    if event["type"] == "checkout.session.completed":
+        print("Payment was successful.")
+        # TODO: run some custom code here
+
+    return "Success", 200
