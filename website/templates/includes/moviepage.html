@@ -16,40 +16,28 @@
             </table>
         </div>
         <a href="#" class="btn-area">Settings</a> -->
+    {% if current_user.is_authenticated %}
     </header>
     <div class="container">
     <div class="anything">
         <div class="gallery">
-            
-             
              <button id="movie1" class="desc" onclick="openFullscreen();"><img src="\static\pictures\helloworldposter.jpeg" height ="80" width="100" />Click to Play Movie</button>
              <video width="0%" controls id="myvideo">
                  <source src="\static\movies\yt5s.com-Takt Op. Destiny - Official Trailer _ English Sub-(480p).mp4" type="video/mp4">
-             </video>                
-            </div>
-
-        
-        <!-- <div class="gallery">
-            <img src="\static\pictures\weatheringwithyou.jpg">
-                <div class="desc">Your Name</div>
-        </div> -->
+            </video>                
+        </div>
         <div class="gallery">
-            
             <button id="movie1" class="desc" onclick="openFullscreen();"><img src="\static\pictures\taktopdestinyposter.jpg" height ="80" width="100" />Click to Play Movie</button>
             <video width="0%" controls id="myvideo">
                 <source src="\static\movies\yt5s.com-Takt Op. Destiny - Official Trailer _ English Sub-(480p).mp4" type="video/mp4">
-             </video>                
-            </div>
-        
-        
+            </video>                
+        </div>
         <div class="gallery">
-        
-           
             <button id="movie1" class="desc" onclick="openFullscreen();"><img src="\static\pictures\iwanttoeatyourpancreasposter.jpg" height ="80" width="100" />Click to Play Movie</button>
                 <video width="0%" controls id="myvideo">
                     <source src="\static\movies\yt5s.com-Takt Op. Destiny - Official Trailer _ English Sub-(480p).mp4" type="video/mp4">
-                 </video>                
-                </div>
+                </video>                
+        </div>
     </div>
         
 </body>
