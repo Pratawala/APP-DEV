@@ -124,6 +124,9 @@ class ResetPasswordForm(FlaskForm):
             raise ValidationError('Email is not registered with website')
 
 
+class OtpForm(FlaskForm):
+        otp= PasswordField('Password',validators=[DataRequired(),Length(min=4,max=4)])
+
 
 class ResetForm(FlaskForm):
         password= PasswordField('Password',validators=[DataRequired()])
