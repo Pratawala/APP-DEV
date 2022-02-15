@@ -76,6 +76,7 @@ def moviepage():
 
 
 
+
 @app.route("/logout")
 def logout():
     logout_user()

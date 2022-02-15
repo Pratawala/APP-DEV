@@ -7,46 +7,52 @@
     <h1></h1>
     {{ a_variable }}
     {% include 'includes/loginform.html' %}
-    {% if current_user.is_authenticated %}
-    <header>
-        <!-- <div class="boxContainer">
-            <table class="elementsContainer">
-                <tr>
-                    <td>
-                        <input type="text" placeholder="Search" class="search">
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <a href="#" class="btn-area">Settings</a> -->
-    </header>
-    <div class="container">
-    <div class="anything">
-        <div class="gallery">
-            <img src="\static\pictures\helloworldposter.jpeg">
-                <div class="desc">Hello World</div>
-        </div>
-        <!-- <div class="gallery">
-            <img src="\static\pictures\weatheringwithyou.jpg">
-                <div class="desc">Your Name</div>
-        </div> -->
-        <div class="gallery">
-            <img src="\static\pictures\taktopdestinyposter.jpg">
-                <div class="desc">Takt Op Destiny</div> 
-        </div>
-        <div class="gallery">
-            <img src="\static\pictures\iwanttoeatyourpancreasposter.jpg">
-                <div class="desc">I want to eat your pancreas</div> 
-        </div>
-
-    </div>
-        
-    {% endif %}
     <div style="display:fixed;background:black;width:77vw;height:90vh;">
         <video  controls autoplay muted style="width:77vw;height:90vh;">
             <source src="/static/movies/Y2Mate.is_-_HELLO_WORLD2019920-shoWFRnNoWw-1080p-1644877252532.mp4" type="video/mp4">
         </video>
     </div>
+    {% if current_user.is_authenticated %}
+
+    <div class="container">
+    <div class="anything">
+        <div class="gallery">
+            <img src="\static\pictures\helloworldposter.jpeg">
+                <div class="desc">Hello World</div>
+                    <button id="movie1" class="desc" onclick="openFullscreen();"></button>
+                    <video width="0%" controls id="myvideo">
+                        <source src="\static\movies\yt5s.com-Takt Op. Destiny - Official Trailer _ English Sub-(480p).mp4" type="video/mp4">
+                    </video> 
+        </div>
+        <!-- <div class="gallery">
+            <img src="\static\pictures\weatheringwithyou.jpg">
+                <div class="desc">Weathering with you</div>
+        </div> -->
+        <div class="gallery">
+            <img src="\static\pictures\taktopdestinyposter.jpg">
+                <div class="desc">Takt Op Destiny</div> 
+                    <button id="movie1" class="desc" onclick="openFullscreen();"></button>
+                    <video width="0%" controls id="myvideo">
+                        <source src="\static\movies\yt5s.com-Takt Op. Destiny - Official Trailer _ English Sub-(480p).mp4" type="video/mp4">
+                    </video> 
+        </div>
+        <div class="gallery">
+            <img src="\static\pictures\iwanttoeatyourpancreasposter.jpg">
+                <div class="desc">I want to eat your pancreas</div> 
+                    <button id="movie1" class="desc" onclick="openFullscreen();"></button>
+                    <video width="0%" controls id="myvideo">
+                        <source src="\static\movies\yt5s.com-Takt Op. Destiny - Official Trailer _ English Sub-(480p).mp4" type="video/mp4">
+                    </video> 
+        </div>
+
+    </div>
+        
+    {% endif %}
+    <!-- <div style="display:fixed;background:black;width:77vw;height:90vh;">
+        <video  controls autoplay muted style="width:77vw;height:90vh;">
+            <source src="/static/movies/Y2Mate.is_-_HELLO_WORLD2019920-shoWFRnNoWw-1080p-1644877252532.mp4" type="video/mp4">
+        </video>
+    </div> -->
 
 
 
