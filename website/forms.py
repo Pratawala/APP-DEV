@@ -25,7 +25,7 @@ class RegistrationForm(FlaskForm):  #AREA FOR HTML-PY ERRORR
     confirm_password= PasswordField('Confirm Password',validators=[DataRequired(),EqualTo("password","Passwords does not match!")]) 
    
 
-    submit= SubmitField('Sign Up') #Python For the Submit python
+    submit= SubmitField('Make Payment') #Python For the Submit python
 
     def validate_username(self, username): 
         user = User.query.filter_by(username=username.data).first()   #Checks if user is already in database
@@ -136,5 +136,7 @@ confirm_password= PasswordField('Password',validators=[DataRequired(),EqualTo("p
 submit= SubmitField("Reset Password")
 
 
+class PaymentForm(FlaskForm):
+    submit= SubmitField("Make payment")
     
 

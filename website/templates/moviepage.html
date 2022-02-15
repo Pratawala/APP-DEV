@@ -5,6 +5,7 @@
 {% block content %}
 <body>
     <header>
+        <script src="../static/movie1.js"></script>
         <!-- <div class="boxContainer">
             <table class="elementsContainer">
                 <tr>
@@ -19,9 +20,14 @@
     <div class="container">
     <div class="anything">
         <div class="gallery">
-            <img src="\static\pictures\helloworldposter.jpeg">
-                <div class="desc">Hello World</div>
-        </div>
+            
+             <img src="\static\pictures\helloworldposter.jpeg">
+            
+                <button id="movie1" class="desc" onclick="openFullscreen()">Play Movie</button>
+                
+            </div>
+
+        
         <!-- <div class="gallery">
             <img src="\static\pictures\weatheringwithyou.jpg">
                 <div class="desc">Your Name</div>
@@ -30,8 +36,12 @@
             <img src="\static\pictures\taktopdestinyposter.jpg">
                 <div class="desc">Takt Op Destiny</div> 
         </div>
+        
         <div class="gallery">
-            <img src="\static\pictures\iwanttoeatyourpancreasposter.jpg">
+            <!-- <img src="\static\pictures\iwanttoeatyourpancreasposter.jpg"> -->
+            <video  controls poster="\static\pictures\iwanttoeatyourpancreasposter.jpg">
+                <source src="\static\movies\yt5s.com-Takt Op. Destiny - Official Trailer _ English Sub-(480p).mp4" type="video/mp4" id="movie1.0">
+            </video>
                 <div class="desc">I want to eat your pancreas</div> 
         </div>
 
