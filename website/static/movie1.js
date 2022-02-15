@@ -2,7 +2,7 @@
                    
 /* Get the element you want displayed in fullscreen */ 
 
-var elem = document.getElementById("movie1.0");
+var elem = document.getElementById("myvideo" );
 
 /* Function to open fullscreen mode */
 function openFullscreen() {
