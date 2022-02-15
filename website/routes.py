@@ -36,7 +36,7 @@ def register():
         db.session.add(user)
         db.session.commit()
         flash('Your account has been created! You are now able to log in', 'success')
-        return redirect(url_for('login')) #url for name of function for redirect route
+        return render_template("confirm.html") #url for name of function for redirect route
     return render_template('register.html', title='Register', form=form)
     #register.html is the file name for the register form
 
