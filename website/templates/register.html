@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}home{% endblock %}
 
-<button id="submitBtn">Try me ;)</button>
+
 {% block content %}
     <div class="center">
         <h1>Registration</h1>
@@ -21,6 +21,7 @@
                     {{ field }}
                     {% endif %}
                     {{ field.label }}
+            <!-- <div><button id="submitBtn">Try me ;)</button></div> -->
             </div>
             {% else %}
             {% if field == form.submit %}

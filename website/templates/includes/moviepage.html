@@ -5,6 +5,7 @@
 {% block content %}
 <body>
     <header>
+        
         <!-- <div class="boxContainer">
             <table class="elementsContainer">
                 <tr>
@@ -19,23 +20,38 @@
     <div class="container">
     <div class="anything">
         <div class="gallery">
-            <img src="\static\pictures\helloworldposter.jpeg">
-                <div class="desc">Hello World</div>
-        </div>
+            
+             
+             <button id="movie1" class="desc" onclick="openFullscreen();"><img src="\static\pictures\helloworldposter.jpeg" height ="80" width="100" />Click to Play Movie</button>
+             <video width="0%" controls id="myvideo">
+                 <source src="\static\movies\yt5s.com-Takt Op. Destiny - Official Trailer _ English Sub-(480p).mp4" type="video/mp4">
+             </video>                
+            </div>
+
+        
         <!-- <div class="gallery">
             <img src="\static\pictures\weatheringwithyou.jpg">
                 <div class="desc">Your Name</div>
         </div> -->
         <div class="gallery">
-            <img src="\static\pictures\taktopdestinyposter.jpg">
-                <div class="desc">Takt Op Destiny</div> 
-        </div>
+            
+            <button id="movie1" class="desc" onclick="openFullscreen();"><img src="\static\pictures\taktopdestinyposter.jpg" height ="80" width="100" />Click to Play Movie</button>
+            <video width="0%" controls id="myvideo">
+                <source src="\static\movies\yt5s.com-Takt Op. Destiny - Official Trailer _ English Sub-(480p).mp4" type="video/mp4">
+             </video>                
+            </div>
+        
+        
         <div class="gallery">
-            <img src="\static\pictures\iwanttoeatyourpancreasposter.jpg">
-                <div class="desc">I want to eat your pancreas</div> 
-        </div>
-
+        
+           
+            <button id="movie1" class="desc" onclick="openFullscreen();"><img src="\static\pictures\iwanttoeatyourpancreasposter.jpg" height ="80" width="100" />Click to Play Movie</button>
+                <video width="0%" controls id="myvideo">
+                    <source src="\static\movies\yt5s.com-Takt Op. Destiny - Official Trailer _ English Sub-(480p).mp4" type="video/mp4">
+                 </video>                
+                </div>
     </div>
         
 </body>
+<script src="../static/movie1.js"></script>
 {% endblock %}

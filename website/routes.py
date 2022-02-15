@@ -4,7 +4,7 @@ from flask import render_template,flash,redirect,url_for,flash,redirect,request,
 from sqlalchemy import true
 from wtforms.validators import Email
 from website.models import User
-from website.forms import RegistrationForm, LoginForm, UpdateAccountForm, RequestResetForm, ResetPasswordForm
+from website.forms import PaymentForm, RegistrationForm, LoginForm, UpdateAccountForm, RequestResetForm, ResetPasswordForm
 from website.forms import RegistrationForm, LoginForm, UpdateAccountForm , RequestResetForm, ResetForm
 from website import app,db,bcrypt,stripe_keys
 from flask_login import current_user, login_required, login_user, logout_user
@@ -36,7 +36,7 @@ def register():
         db.session.add(user)
         db.session.commit()
         flash('Your account has been created! You are now able to log in', 'success')
-        return redirect(url_for('login'))
+        return redirect(url_for('https://checkout.stripe.com/pay/cs_test_a1zjYtp6t6Pq0UOkG1YMTRuUQNMujqB67m6Dws0C6JYWq1lZu5ljfvu60b#fidkdWxOYHwnPyd1blpxYHZxWjA0TlExVnxDSXx9QEZTTWddcTZAMTZAXFFdcURGUWhKMDRnbE5pdWNUbXBId2xcdlVOPHVDT1FrYXZ0MHxQMmNmYHFWMHVEZEdfcGdSYlFDXWh0TGZPbW5dNTVrN1Q3Q19mVCcpJ2hsYXYnP34nYnBsYSc%2FJ2ZgNGEzNTQwKGA9MWQoMTAwMSg8ZzQ3KDQ2PTI3Zz09Y2A0Y2NnNTE1YCcpJ2hwbGEnPydkPTM3ZzZnNig0ZzcwKDFnPTYoZzA2YCg2M2E2ZjxgMTYwM2QxZmFkZ2EnKSd2bGEnPydgY2c0Y2Y3MihgZmAwKDFmMzIoZDMzMihmZDE0NjBnZ2BhZDMxM2E0ZDAneCknZ2BxZHYnP15YKSdpZHxqcHFRfHVgJz8ndmxrYmlgWmxxYGgnKSd3YGNgd3dgd0p3bGJsayc%2FJ21xcXU%2FKio0NzIrNSs1KzQ%2FMDU1NSd4JSUl'))
     return render_template('register.html', title='Register', form=form)
     #register.html is the file name for the register form
 
@@ -311,3 +311,5 @@ def stripe_webhook():
         # TODO: run some custom code here
 
     return "Success", 200
+
+
