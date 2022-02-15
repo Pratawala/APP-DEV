@@ -1,9 +1,6 @@
-<<<<<<< HEAD
 from flask import render_template,flash,redirect,url_for,flash,redirect,request,jsonify
 from flask import render_template,flash,redirect,url_for,flash,redirect,request,session
-=======
 from flask import render_template,flash,redirect,url_for,flash,redirect,request,session,jsonify,request
->>>>>>> bba9e21014dcccdf6f1dee38f52ed4f53d97ccd3
 from sqlalchemy import true
 from wtforms.validators import Email
 from website.models import User
@@ -67,7 +64,7 @@ def login():
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for('moviepage'))
+            return redirect(next_page) if next_page else redirect(url_for('home'))
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
     return render_template('login.html', title='Login', form=form)
