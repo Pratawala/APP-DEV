@@ -36,7 +36,7 @@ def register():
         db.session.add(user)
         db.session.commit()
         flash('Your account has been created! You are now able to log in', 'success')
-        return redirect(url_for('https://checkout.stripe.com/pay/cs_test_a1zjYtp6t6Pq0UOkG1YMTRuUQNMujqB67m6Dws0C6JYWq1lZu5ljfvu60b#fidkdWxOYHwnPyd1blpxYHZxWjA0TlExVnxDSXx9QEZTTWddcTZAMTZAXFFdcURGUWhKMDRnbE5pdWNUbXBId2xcdlVOPHVDT1FrYXZ0MHxQMmNmYHFWMHVEZEdfcGdSYlFDXWh0TGZPbW5dNTVrN1Q3Q19mVCcpJ2hsYXYnP34nYnBsYSc%2FJ2ZgNGEzNTQwKGA9MWQoMTAwMSg8ZzQ3KDQ2PTI3Zz09Y2A0Y2NnNTE1YCcpJ2hwbGEnPydkPTM3ZzZnNig0ZzcwKDFnPTYoZzA2YCg2M2E2ZjxgMTYwM2QxZmFkZ2EnKSd2bGEnPydgY2c0Y2Y3MihgZmAwKDFmMzIoZDMzMihmZDE0NjBnZ2BhZDMxM2E0ZDAneCknZ2BxZHYnP15YKSdpZHxqcHFRfHVgJz8ndmxrYmlgWmxxYGgnKSd3YGNgd3dgd0p3bGJsayc%2FJ21xcXU%2FKio0NzIrNSs1KzQ%2FMDU1NSd4JSUl'))
+        return render_template("confirm.html") #url for name of function for redirect route
     return render_template('register.html', title='Register', form=form)
     #register.html is the file name for the register form
 
@@ -156,7 +156,7 @@ def uploaded_file():#upload_file():
 @app.route("/retrieve")
 def send_reset_email(user):
     token= user.get_reset_token()
-    msg= Message('Password Reset Request',sender='210511G@mymail.nyp.edu.sg',recipients=[user.email]) 
+    msg= Message('Password Reset Request',sender='kingsleylow2013@gmail.com',recipients=[user.email]) 
     msg.body=f'''To reset your password,visit the following link:'
 {url_for('reset_token',token=token,_external=True) } 
 
