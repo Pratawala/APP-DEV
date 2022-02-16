@@ -5,7 +5,7 @@ from sqlalchemy import true
 from wtforms.validators import Email
 from website.models import User
 from website.forms import PaymentForm, RegistrationForm, LoginForm, UpdateAccountForm, RequestResetForm, ResetPasswordForm
-from website.forms import RegistrationForm, LoginForm, UpdateAccountForm , RequestResetForm, ResetForm
+from website.forms import RegistrationForm, LoginForm, UpdateAccountForm , RequestResetForm, ResetForm, OtpForm
 from website import app,db,bcrypt,stripe_keys
 from flask_login import current_user, login_required, login_user, logout_user
 from flask_mail import Message
@@ -174,6 +174,20 @@ def reset_request():
         flash('An email has been sent with instructions to reset your password.', 'info')#bootstrap alert button
         return redirect(url_for('login'))
     return render_template('newpassword.html', title='Reset Password', form=form)
+
+@app.route("/otp", methods=['GET', 'POST'])
+def otp():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    form = OtpForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+    
+    return render_template('otp.html')
+        
+    
+    
+    
 
 
 @app.route("/reset_password/<token>", methods=['GET', 'POST'])

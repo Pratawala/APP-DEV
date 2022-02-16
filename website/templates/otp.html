@@ -1,11 +1,11 @@
 {% extends "base.html" %}
-{% block title %}new password{% endblock %}
+{% block title %}otp{% endblock %}
 
 
 {% block content %}
 
     <div class="center">
-        <h1>Reset Password</h1>
+        <h1>Enter your OTP</h1>
         <form method="post" autocomplete="off">
             {{ form.hidden_tag() }}
             {% for field in form %}
@@ -32,5 +32,3 @@
 
 
 {% endblock %}
-
-
