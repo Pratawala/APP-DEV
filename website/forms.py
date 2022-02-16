@@ -99,7 +99,6 @@ class UpdateAccountForm(FlaskForm):
             if user:
                 raise ValidationError('That email is taken. Please choose a different one.')
             
-    
 
 class RequestResetForm(FlaskForm):
     email = StringField('Email',
@@ -110,6 +109,7 @@ class RequestResetForm(FlaskForm):
         user = User.query.filter_by(email=email.data).first()
         if user is None:
             raise ValidationError('There is no account with that email. You must register first.')
+        
 
 
 class ResetPasswordForm(FlaskForm):
@@ -126,6 +126,8 @@ class ResetPasswordForm(FlaskForm):
             user = User.query.filter_by(email=email.data).first()   #Checks if user is already in database
         if user is None: #if user is none this conditional will be activated
             raise ValidationError('Email is not registered with website')
+        
+
 
 
 
@@ -138,5 +140,7 @@ submit= SubmitField("Reset Password")
 
 class PaymentForm(FlaskForm):
     submit= SubmitField("Make payment")
+    
+
     
 
