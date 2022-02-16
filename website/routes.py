@@ -231,13 +231,11 @@ def test0():
 def test1():
     return render_template('reqotp.html')
 
-@app.route('/otp')
-def test2():
-    return render_template('otp.html')
+
 
 @app.route('/newpassword')
-def test3():
-    return render_template('newpassword.html')
+def loginpage():
+    return render_template('login.html')
 
 
 @app.route("/config")
