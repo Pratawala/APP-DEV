@@ -1,20 +1,34 @@
 {% extends "base.html" %}
-{% block title %}new password{% endblock %}
+{% block title %}otp{% endblock %}
 
 
 {% block content %}
-    <div class="form-container">
-        <form action="#" method="post" class="form-wrap">
-            <h2>New Password</h2>
-           
-            <div class="form-box">
-                <input type="text" placeholder="Enter OTP">
-            </div>
-            <div class="form-submit">
-                <input type="submit" value="Submit">
-            </div>
-        </form>
-    </div>
+
+    <div class="center">
+        <h1>Enter your OTP</h1>
+        <form method="post" autocomplete="off">
+            {{ form.hidden_tag() }}
+            {% for field in form %}
+            {% if field not in [form.csrf_token, form.submit] %}
+            <div class="{{'txt_field' if field != form.remember}}">
+                {% if field.errors %}
+                {{ field }}
+                <div class="small text-danger" style="position:absolute;">
+                    {% for error in field.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                    {{ field }}
+                    {% endif %}
+                    {{ field.label }}
+                </div>
+            {% else %}
+            {% if field == form.submit %}
+            {{ field }}
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+
+
 {% endblock %}
-
-
