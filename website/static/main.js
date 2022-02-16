@@ -1,4 +1,13 @@
+
+
+
+
 console.log("Coding till 5am :)"); //testing if file links 
+
+
+
+
+
 //GOes to button with id=submit and create the checkout session
 // Get Stripe publishable key
 fetch("/config")
@@ -23,3 +32,4 @@ fetch("/config")
     });
   });
 });
+

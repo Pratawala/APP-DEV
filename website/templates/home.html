@@ -1,51 +1,50 @@
+<script src="../static/movie1.js"></script>
 {% extends "base.html" %}
 {% block title %}home{% endblock %}
 
 
 {% block content %}
 
-    <h1></h1>
+    
     {{ a_variable }}
     {% include 'includes/loginform.html' %}
-    <div style="display:fixed;background:black;width:77vw;height:90vh;">
-        <video  controls autoplay muted style="width:77vw;height:90vh;">
-            <source src="/static/movies/Y2Mate.is_-_HELLO_WORLD2019920-shoWFRnNoWw-1080p-1644877252532.mp4" type="video/mp4">
-        </video>
-    </div>
+    
     {% if current_user.is_authenticated %}
 
+ 
+    
     <div class="container">
-    <div class="anything">
-        <div class="gallery">
-            <img src="\static\pictures\helloworldposter.jpeg">
-                <div class="desc">Hello World</div>
-                    <button id="movie1" class="desc" onclick="openFullscreen();"></button>
-                    <video width="0%" controls id="myvideo">
+        <div class="anything">
+            <div class="gallery">
+                 <button id="movie1" class="desc" onclick="pass();"><img src="\static\pictures\helloworldposter.jpeg" height ="80" width="100" />Click to Play Movie</button>
+                 <video width="0%" controls id="myvideo1">
+                     <source src="../static/movies/Y2Mate.is_-_HELLO_WORLD2019920-shoWFRnNoWw-1080p-1644877252532.mp4" type="video/mp4">
+                </video> 
+                            
+            </div>
+            <div class="gallery">
+                <button id="movie1" class="desc" onclick="openFullscreen();"><img src="\static\pictures\taktopdestinyposter.jpg" height ="80" width="100" />Click to Play Movie</button>
+                <video width="0%" controls >
+                    <source src="\static\movies\yt5s.com-Takt Op. Destiny - Official Trailer _ English Sub-(480p).mp4" type="video/mp4">
+                </video>                
+            </div>
+            <div class="gallery">
+                <button id="movie1" class="desc" onclick="openFullscreen();"><img src="\static\pictures\iwanttoeatyourpancreasposter.jpg" height ="80" width="100" />Click to Play Movie</button>
+                    <video width="0%" controls >
                         <source src="\static\movies\yt5s.com-Takt Op. Destiny - Official Trailer _ English Sub-(480p).mp4" type="video/mp4">
-                    </video> 
-        </div>
-        <!-- <div class="gallery">
-            <img src="\static\pictures\weatheringwithyou.jpg">
-                <div class="desc">Weathering with you</div>
-        </div> -->
-        <div class="gallery">
-            <img src="\static\pictures\taktopdestinyposter.jpg">
-                <div class="desc">Takt Op Destiny</div> 
-                    <button id="movie1" class="desc" onclick="openFullscreen();"></button>
-                    <video width="0%" controls id="myvideo">
-                        <source src="\static\movies\yt5s.com-Takt Op. Destiny - Official Trailer _ English Sub-(480p).mp4" type="video/mp4">
-                    </video> 
-        </div>
-        <div class="gallery">
-            <img src="\static\pictures\iwanttoeatyourpancreasposter.jpg">
-                <div class="desc">I want to eat your pancreas</div> 
-                    <button id="movie1" class="desc" onclick="openFullscreen();"></button>
-                    <video width="0%" controls id="myvideo">
-                        <source src="\static\movies\yt5s.com-Takt Op. Destiny - Official Trailer _ English Sub-(480p).mp4" type="video/mp4">
-                    </video> 
-        </div>
+                    </video>                
+            </div>
+
+            
 
     </div>
+
+    {% else %}
+        <div class="hide" style="display:fixed;background:black;width:77vw;height:90vh;">
+            <video  class="hide" controls autoplay muted style="width:77vw;height:90vh;">
+                <source src="/static/movies/Y2Mate.is_-_HELLO_WORLD2019920-shoWFRnNoWw-1080p-1644877252532.mp4" type="video/mp4">
+            </video>
+        </div>
         
     {% endif %}
     <!-- <div style="display:fixed;background:black;width:77vw;height:90vh;">
